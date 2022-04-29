@@ -4,14 +4,6 @@ const config = require("../config");
 // models
 const { good, error } = require("../models/chalk");
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: config.sender,
-    pass: config.pass,
-  },
-});
-
 /**
  * It sends an email to the specified receiver with the specified subject and content
  * @param subject - The subject of the email
@@ -19,6 +11,14 @@ const transporter = nodemailer.createTransport({
  * @param receiver - The email address of the person you're sending the email to.
  */
 const SendEmail = (subject, content, receiver) => {
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: config.sender,
+      pass: config.pass,
+    },
+  });
+
   const mailOptions = {
     from: config.sender,
     to: receiver,

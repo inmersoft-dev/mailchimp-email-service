@@ -23,7 +23,7 @@ emailRouter.use(
 emailRouter.get("/email", (req, res) => {
   try {
     load.start();
-    SendEmail();
+    SendEmail("Hola", "<h1>Hola</h1>", "sito8943@gmail.com");
     load.stop();
     res.send("Done");
   } catch (e) {
