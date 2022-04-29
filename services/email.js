@@ -1,22 +1,29 @@
-let nodemailer = require("nodemailer");
+const nodemailer = require("nodemailer");
+const config = require("../config");
 
 // models
-const { good, error } = require("../model/chalk");
+const { good, error } = require("../models/chalk");
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: "youremail@gmail.com",
-    pass: "yourpassword",
+    user: config.sender,
+    pass: config.pass,
   },
 });
 
-const SendEmail = (content, receiver) => {
+/**
+ * It sends an email to the specified receiver with the specified subject and content
+ * @param subject - The subject of the email
+ * @param content - The HTML content of the email.
+ * @param receiver - The email address of the person you're sending the email to.
+ */
+const SendEmail = (subject, content, receiver) => {
   const mailOptions = {
-    from: "youremail@gmail.com",
+    from: config.sender,
     to: receiver,
-    subject: "Sending Email using Node.js",
-    html: "<h1>That was easy!</h1>",
+    subject: subject,
+    html: content,
   };
 
   transporter.sendMail(mailOptions, (e, info) => {

@@ -2,15 +2,17 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 
+const config = require("../config");
+
 // models
-const { log, info } = require("../model/chalk");
+const { log, info } = require("../models/chalk");
 
 // routes
-const post = require("../routes/post");
+const email = require("../routes/email");
 
 const app = express();
 
-const port = 3001;
+const port = process.env.PORT || config.port;
 
 app.set("etag", "strong"); //browser caching of static assets should work properly
 
@@ -27,7 +29,7 @@ app.get("/", function (req, res) {
 });
 
 // posts
-app.post("/post", post);
+app.post("/api", email);
 
 /*app.get("/*", (req, res) => {
   //this is required to support any client side routing written in react.
