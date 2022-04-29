@@ -1,0 +1,49 @@
+{
+  "name": "mailchimp-email-service",
+  "version": "0.0.1",
+  "description": "mailchimp-email-service",
+  "main": "server.js",
+  "scripts": {
+    "start": "npm run serve",
+    "serve": "node ./bin/index.js",
+    "dev": "nodemon ./bin/index.js",
+    "test": "node test.js"
+  },
+  "author": "Sito",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inmersoft-dev/mailchimp-email-service"
+  },
+  "keywords": [
+    "mailchimp",
+    "nodemailer",
+    "express",
+    "node-js",
+    "basic-auth"
+  ],
+  "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.75",
+    "axios": "^0.27.2",
+    "body-parser": "^1.20.0",
+    "chalk": "4.1.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.1",
+    "express-basic-auth": "^1.2.1",
+    "http-errors": "^2.0.0",
+    "http-proxy-middleware": "^2.0.6",
+    "loading-cli": "^1.1.0",
+    "morgan": "^1.10.0",
+    "node-cron": "^3.0.0",
+    "nodemailer": "^6.7.4",
+    "serve": "^13.0.2",
+    "server-destroy": "^1.0.1",
+    "socket.io": "^4.5.0",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "jest": "^28.0.3",
+    "nodemon": "^2.0.16"
+  }
+}
