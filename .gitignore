@@ -1,4 +1,6 @@
 .env
+oauth.json
+bot.json
 
 # Logs
 logs

@@ -10,9 +10,16 @@ const { good, error } = require("../models/chalk");
  * @param content - The HTML content of the email.
  * @param receiver - The email address of the person you're sending the email to.
  */
-const SendEmail = (subject, content, receiver) => {
+const SendEmail = (subject, content, receiver) => {};
+
+const a = async () => {
+  const subject = "Hola";
+  const content = "<h1>Hola</h1>";
+  const receiver = "sito8943@gmail.com";
   const transporter = nodemailer.createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: "465",
+    secure: "true",
     auth: {
       user: config.sender,
       pass: config.pass,
@@ -26,11 +33,19 @@ const SendEmail = (subject, content, receiver) => {
     html: content,
   };
 
-  transporter.sendMail(mailOptions, (e, info) => {
-    if (e) error(e);
-    else good("Email sent: " + info.response);
-  });
+  const verified = await transporter.verify();
+
+  if (verified) {
+    try {
+      transporter.sendMail(mailOptions);
+      // good("Email sent: " + info.response);
+    } catch (e) {
+      error(e);
+    }
+  } else error(verified);
 };
+
+a();
 
 module.exports = {
   SendEmail,
