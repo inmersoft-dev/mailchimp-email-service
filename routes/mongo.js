@@ -10,37 +10,6 @@ dbo.connectToServer((err) => {
 
 const recordRoutes = express.Router();
 
-recordRoutes.post("/query", async (req, res) => {
-  load.start();
-  try {
-    const { which, year, month, specialization, hospital } = req.body;
-    let result = [];
-    console.log(which);
-    switch (which) {
-      case "1":
-        result = await MostUsedHospitals({ year, month });
-        break;
-      case "2":
-        result = await MostUsedDiagnosis({ specialization });
-        break;
-      case "3":
-        result = await AverageTimeOfConsultation({ specialization, hospital });
-        break;
-      case "4":
-        result = await MostUsedPatienceTypes({ year, month });
-        break;
-      case "5":
-        result = await MostUsedConsultationTypes({ year, month });
-        break;
-    }
-    console.log(result);
-    res.send({ result });
-  } catch (err) {
-    console.log(err);
-  }
-  load.stop();
-});
-
 // This section will help you get a list of all the documents.
 recordRoutes.get("/get", async (req, res) => {
   load.start();
