@@ -3,17 +3,13 @@ const assert = require("assert");
 
 dotenv.config();
 
-const { PORT, SENDER, PASS, APP, REACT, ADMIN } = process.env;
+const { PORT, DBRURL, APP } = process.env;
 
 assert(PORT, "PORT is required");
-assert(SENDER, "SENDER is required");
-assert(PASS, "PASS is required");
+assert(DBRURL, "DBRURL (database remote url) is required");
 
 module.exports = {
   port: PORT,
-  sender: SENDER,
-  pass: PASS,
-  app: APP,
-  react: REACT,
-  admin: ADMIN,
+  dbURL: DBRURL,
+  appHash: APP,
 };
