@@ -7,7 +7,7 @@ const dbo = require("../db/conn");
 const { verifyBasic } = require("../utils/secure");
 
 // pages
-const { notFound } = require("../utils/pages");
+const { notFound, index, privacyPolicy } = require("../utils/pages");
 
 const load = require("../utils/loading");
 const { error, log, info, good } = require("../utils/chalk");
@@ -20,6 +20,8 @@ dbo.connectToServer((err) => {
 router.get("/", (req, res) => {
   res.send("Hola").status(200);
 });
+
+router.get("/privacy-policy", (req, res) => {});
 
 router.get("/contacts", async (req, res) => {
   //! No authorization
