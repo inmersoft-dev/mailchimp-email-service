@@ -1,5 +1,7 @@
-var express = require("express");
-var router = express.Router();
+const express = require("express");
+const path = require("path");
+
+const router = express.Router();
 
 const dbo = require("../db/conn");
 
@@ -7,7 +9,7 @@ const dbo = require("../db/conn");
 const { verifyBasic } = require("../utils/secure");
 
 // pages
-const { notFound, index, privacyPolicy } = require("../utils/pages");
+const { notFound } = require("../utils/pages");
 
 const load = require("../utils/loading");
 const { error, log, info, good } = require("../utils/chalk");
@@ -15,13 +17,6 @@ const { error, log, info, good } = require("../utils/chalk");
 dbo.connectToServer((err) => {
   if (err) log(error(err));
 });
-
-/* GET home page. */
-router.get("/", (req, res) => {
-  res.send("Hola").status(200);
-});
-
-router.get("/privacy-policy", (req, res) => {});
 
 router.get("/contacts", async (req, res) => {
   //! No authorization
